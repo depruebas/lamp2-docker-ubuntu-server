@@ -1,0 +1,27 @@
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lamp_mysql
+    hostname: lamp_mysql
+    tty: true     # Keep the container running with an interactive shell
+    stdin_open: true
+    volumes:
+      - ./user_data:/home/ubuntu
+      - ../temp:/data/temp
+      - ./custom.cnf:/etc/mysql/conf.d/custom.cnf
+      - ${DATA_PATH}/mysql-data-8.0:/var/lib/mysql
+
+    ports:
+      - "2002:22"
+      - "3366:3306"
+      - "82:80"
+
+    networks:
+      lamp-network:
+        ipv4_address: 172.45.0.2
+  
+networks:
+  lamp-network:
+    external: true
