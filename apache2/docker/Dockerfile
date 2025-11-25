@@ -10,12 +10,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Update and install basic packages and Apache2, MySql, PHP and mods apache2
 RUN apt-get update && apt-get install -y \
     apache2 php mysql-client postgresql-client \
-    php-mysqli php-mbstring php-zip php-gd php-json php-curl libapache2-mod-php php-pgsql \
+    php-mysqli php-mbstring php-zip php-gd php-json php-curl libapache2-mod-php php-pgsql php-dom php-intl \
     curl \
     wget \
     tar \
     nano \
     vim \
+    git \
     net-tools \
     iputils-ping \
     systemd \
@@ -33,6 +34,8 @@ RUN echo 'echo "LANG=es_ES" > /etc/default/locale'
 ENV LC_ALL=es_ES.UTF-8
 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+RUN curl https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
 
 # Create directories 
 RUN mkdir -p /opt/start && mkdir /data

@@ -16,15 +16,20 @@ if [ ! -f /home/ubuntu/.bash_logout ]; then
     cp /etc/skel/.bash_logout /home/ubuntu/.bash_logout
 fi
 
-echo "Added specific settings to the user profile file"
+# echo "Added specific settings to the user profile file"
 
-echo 'export LS_OPTIONS="--color=auto"' >> /home/ubuntu/.bashrc 
-echo 'eval "$(dircolors -b)"' >> /home/ubuntu/.bashrc
-echo 'alias ls="ls --color=auto"' >> /home/ubuntu/.bashrc
-echo 'alias ll="ls -alF"' >> /home/ubuntu/.bashrc 
-echo 'alias la="ls -A"' >> /home/ubuntu/.bashrc
-echo 'alias l="ls -CF"' >> /home/ubuntu/.bashrc 
-echo 'PS1="\[\e[01;33m\]\u\[\e[00m\]@\[\e[01;35m\]\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ "' >> /home/ubuntu/.bashrc
+# echo "function parse_git_branch () {
+#   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+# }
+# "
+
+# echo 'export LS_OPTIONS="--color=auto"' >> /home/ubuntu/.bashrc 
+# echo 'eval "$(dircolors -b)"' >> /home/ubuntu/.bashrc
+# echo 'alias ls="ls --color=auto"' >> /home/ubuntu/.bashrc
+# echo 'alias ll="ls -alF"' >> /home/ubuntu/.bashrc 
+# echo 'alias la="ls -A"' >> /home/ubuntu/.bashrc
+# echo 'alias l="ls -CF"' >> /home/ubuntu/.bashrc 
+# echo 'PS1="\[\e[01;33m\]\u\[\e[00m\]@\[\e[01;35m\]\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$(parse_git_branch)\$ "' >> /home/ubuntu/.bashrc
 
 # Enable and configure Apache2
 ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load 

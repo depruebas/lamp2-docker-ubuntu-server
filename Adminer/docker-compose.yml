@@ -1,0 +1,19 @@
+
+services:
+  adminer:
+    image: adminer
+    container_name: lamp_adminer
+
+    ports:
+      - "5080:8080"
+
+    networks:
+      lamp-network:
+        ipv4_address: 172.45.0.5
+
+    volumes:
+      - ./custom.css:/var/www/html/adminer.css
+
+networks:
+  lamp-network:
+    external: true

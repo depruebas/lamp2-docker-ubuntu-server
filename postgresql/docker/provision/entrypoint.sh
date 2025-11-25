@@ -26,6 +26,12 @@ echo 'alias la="ls -A"' >> /home/ubuntu/.bashrc
 echo 'alias l="ls -CF"' >> /home/ubuntu/.bashrc 
 echo 'PS1="\[\e[01;33m\]\u\[\e[00m\]@\[\e[01;35m\]\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ "' >> /home/ubuntu/.bashrc
 
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo mv /etc/apt/trusted.gpg /etc/apt/trusted.gpg.d/postgresql.gpg
+
+sudo apt update
+
 # Configure PostgreSQL
 VERSION=$(sudo -u postgres pg_config --version |  awk '{print $2}' | cut -d '.' -f 1)
 
@@ -46,23 +52,6 @@ sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'root';"
 
 # Reiniciamos servicio de psotgreSQL
 service postgresql restart
-
-cd /tmp
-wget https://github.com/vrana/adminer/releases/download/v5.4.1/adminer-5.4.1.php
-mkdir -p /var/www/adminer
-mv /tmp/adminer-5.4.1.php /var/www/adminer/index.php
-
-chown -R www-data:www-data /var/www/adminer
-chmod -R 755 /var/www/adminer
-
-# Configure and Init Apache2
-ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load 
-ln -s /home/ubuntu/apache-vhost.conf  /etc/apache2/sites-enabled/apache-vhost.conf
-rm /etc/apache2/sites-enabled/000-default.conf
-sed -i '$aListen 8080' /etc/apache2/ports.conf
-echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
-apache2ctl -D FOREGROUND &
 
 # Enable sshd deamon
 service ssh start

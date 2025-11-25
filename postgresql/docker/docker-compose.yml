@@ -8,18 +8,20 @@ services:
     tty: true     # Keep the container running with an interactive shell
     stdin_open: true
     volumes:
-      - ./user_data:/home/ubuntu
-      - ../temp:/data/temp
-      - ${DATA_PATH}/postgres-16:/var/lib/postgresql/data
+      - "./user_data:/home/ubuntu"
+      - "../temp:/data/temp"
+      - "pgdata:/var/lib/postgresql/16/main"
 
     ports:
       - "2004:22"
       - "5432:5432"
-      - "84:80"
 
     networks:
       lamp-network:
         ipv4_address: 172.45.0.4
+
+volumes:
+  pgdata:
   
 networks:
   lamp-network:

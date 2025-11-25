@@ -11,17 +11,19 @@ services:
       - ./user_data:/home/ubuntu
       - ../temp:/data/temp
       - ./custom.cnf:/etc/mysql/conf.d/custom.cnf
-      - ${DATA_PATH}/mysql-data-8.0:/var/lib/mysql
+      - mysqldata:/var/lib/mysql
 
     ports:
       - "2002:22"
       - "3366:3306"
-      - "82:80"
 
     networks:
       lamp-network:
         ipv4_address: 172.45.0.2
-  
+
+volumes:
+  mysqldata:
+
 networks:
   lamp-network:
     external: true

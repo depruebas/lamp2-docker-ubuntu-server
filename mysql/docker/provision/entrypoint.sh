@@ -27,41 +27,6 @@ echo 'alias l="ls -CF"' >> /home/ubuntu/.bashrc
 echo 'PS1="\[\e[01;33m\]\u\[\e[00m\]@\[\e[01;35m\]\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ "' >> /home/ubuntu/.bashrc
 
 ##
-# Section: Download, unzip and configure phpMyAdmin and initialize Apache2
-##
-
-echo "Started phpMyAdmin"
-
-cd /tmp
-wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
-tar -xzf phpMyAdmin-latest-all-languages.tar.gz
-mv phpMyAdmin-*-all-languages /var/www/phpmyadmin
-mkdir -p /var/www/phpmyadmin/tmp
-cd /var/www/phpmyadmin
-cp config.sample.inc.php config.inc.php
-
-sed -i "s/\(\$cfg\['Servers'\]\[\$i\]\['host'\]\s*=\s*\)'localhost'/\1'127.0.0.1'/" config.inc.php
-
-BLOWFISH_SECRET=$(tr -dc 'A-Za-z0-9!@#$%^&*()_+=' < /dev/urandom | head -c 32)
-# Escapar caracteres especiales para sed
-ESCAPED_SECRET=$(printf '%s\n' "$BLOWFISH_SECRET" | sed 's/[&/\]/\\&/g')
-sed -i "s|\(\$cfg\['blowfish_secret'\] = \)'';|\1'$ESCAPED_SECRET';|" config.inc.php
-
-
-# # Establecer permisos
-chown -R www-data:www-data /var/www/phpmyadmin
-chmod -R 755 /var/www/phpmyadmin
-
-# Configure and Init Apache2
-ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load 
-ln -s /home/ubuntu/apache-vhost.conf  /etc/apache2/sites-enabled/apache-vhost.conf
-rm /etc/apache2/sites-enabled/000-default.conf
-sed -i '$aListen 8080' /etc/apache2/ports.conf
-echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
-apache2ctl -D FOREGROUND &
-
-##
 # Section: Star and configure MySql
 ##
 

@@ -9,8 +9,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Update and install basic packages and Apache2, MySql, PHP and mods apache2
 RUN apt-get update && apt-get install -y \
-    apache2 php mysql-server \
-    php-mysqli php-mbstring php-zip php-gd php-json php-curl libapache2-mod-php \
+    mysql-server \
     curl \
     wget \
     tar \
