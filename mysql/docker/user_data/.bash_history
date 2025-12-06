@@ -79,3 +79,62 @@ netstat -tulpen | grep 3306
 exit
 netstat -tulpen | grep 3306
 exit
+ll
+ps -ef | grep mysql
+sudo service mysql start
+mysql
+exit
+ps -ef | grep mysql
+sudo dpkg -l
+sudo dpkg -l | grep apache
+sudo dpkg -l | grep php
+sudo dpkg -l | grep mysql
+exit
+cd /data/temp/
+ll
+sudo mysql -u root -proot zonasql_local < zonasql_dev.sql
+cd
+ll
+cd /var/ww
+exit
+cd /data/temp/
+ll
+sudo mysql -u root -proot apitest < apitest.sql
+sudo mysql -u root -proot blog < blog.sql
+sudo mysql -u root -proot booklibrary < booklibrary.sql
+sudo mysql -u root -proot cambiatealinux_local < cambiatealinux_local.sql
+sudo mysql -u root -proot nenuro_sin < nenuro_sin.sql
+sudo mysql -u root -proot netveloper_local < netveloper_local.sql
+sudo mysql -u root -proot utils < utils.sql
+exit
+ll
+cd /data/temp/
+ll
+sudo mysql -u root -proot < apitest.sql 
+sudo mysql -u root -proot < blog.sql 
+sudo mysql -u root -proot < booklibrary.sql 
+sudo mysql -u root -proot < cambiatealinux_local.sql 
+exit
+sudo /etc/init.d/mysql reload
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf 
+exit
+ps -ef | grep my
+sudo /etc/init.d/mysql start
+ps -ef | grep my
+cat /var/log/mysql/error.log 
+tail -f /var/log/mysql/error.log 
+sudo /etc/init.d/mysql reload
+sudo /etc/init.d/mysql start
+sudo su
+sudo /etc/init.d/mysql start
+ls -ld /var/lib/mysql
+sudo chown -R mysql:mysql /var/lib/mysql
+ls -ld /var/lib/mysql
+sudo /etc/init.d/mysql start
+ps -ef | grep mysq
+ps -ef | grep my
+quit
+exit
+ps -ef | grep mysq
+sudo su
+exit

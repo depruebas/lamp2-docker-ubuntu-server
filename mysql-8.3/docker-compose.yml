@@ -1,0 +1,42 @@
+# docker run --name pma-lamp -d --link lamp-mysql:db --net lamp-linux_red_lamp -p 7500:80 phpmyadmin
+
+services:
+  mysql:
+    image: mysql:8.3
+    container_name: lamp_my83
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    
+    volumes:
+      - ./custom.cnf:/etc/mysql/conf.d/custom.cnf
+      - ${DATA_PATH}/mysql-data-8.3:/var/lib/mysql
+      - ../temp:/mnt
+
+    ports:
+      - "3336:3306"
+
+    networks:
+      lamp-network:
+        ipv4_address: 172.45.0.12
+
+  mysql_57:
+    image: mysql:5.7
+    container_name: lamp_my57
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    
+    volumes:
+      - ./custom.cnf:/etc/mysql/conf.d/custom.cnf
+      - ${DATA_PATH}/mysql_57_data:/var/lib/mysql
+      - ../temp:/mnt
+
+    ports:
+      - "3346:3306"
+
+    networks:
+      lamp-network:
+        ipv4_address: 172.45.0.17
+  
+networks:
+  lamp-network:
+    external: true

@@ -14,7 +14,7 @@ services:
       - mysqldata:/var/lib/mysql
 
     ports:
-      - "2002:22"
+      #- "2002:22"
       - "3366:3306"
 
     networks:

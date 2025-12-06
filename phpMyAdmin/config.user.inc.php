@@ -2,19 +2,22 @@
 
 $cfg['Servers'][1]['host'] = '172.45.0.2';
 
-// $allowed_hosts = [
-//     ['host' => '172.21.0.29', 'label' => 'MySql 9.3'],
-//     ['host' => '172.21.0.24', 'label' => 'MySql 8.4'],
-//     ['host' => '172.21.0.2',  'label' => 'MySql 8.3'],
-//     ['host' => '172.21.0.80', 'label' => 'MySql 8.0'],
-//     ['host' => '172.21.0.57', 'label' => 'MySql 5.7'],
-//     ['host' => '172.21.0.56', 'label' => 'MySql 5.6'],
-//     ['host' => '172.21.0.113', 'label' => 'mariaDB 11.3'],
-//     ['host' => '172.21.0.111', 'label' => 'mariaDB 10.11'],
-//     ['host' => '172.21.0.106',  'label' => 'mariaDB 10.6'],
-//     ['host' => '172.21.0.105', 'label' => 'mariaDB 10.5'],
-//     ['host' => '172.21.0.103', 'label' => 'mariaDB 10.3'],
-// ];
+$allowed_hosts = [
+    ['host' => '172.45.0.2', 'label' => 'MySql 8.0'],
+    ['host' => '172.45.0.12', 'label' => 'MySql 8.3'],
+    ['host' => '172.45.0.17', 'label' => 'MySql 5.7'],
+    // ['host' => '172.21.0.29', 'label' => 'MySql 9.3'],
+    // ['host' => '172.21.0.24', 'label' => 'MySql 8.4'],
+    // ['host' => '172.21.0.2',  'label' => 'MySql 8.3'],
+    // ['host' => '172.21.0.80', 'label' => 'MySql 8.0'],
+    // ['host' => '172.21.0.57', 'label' => 'MySql 5.7'],
+    // ['host' => '172.21.0.56', 'label' => 'MySql 5.6'],
+    // ['host' => '172.21.0.113', 'label' => 'mariaDB 11.3'],
+    // ['host' => '172.21.0.111', 'label' => 'mariaDB 10.11'],
+    // ['host' => '172.21.0.106',  'label' => 'mariaDB 10.6'],
+    // ['host' => '172.21.0.105', 'label' => 'mariaDB 10.5'],
+    // ['host' => '172.21.0.103', 'label' => 'mariaDB 10.3'],
+];
 
 foreach ($allowed_hosts as $i => $srv) {
     $idx = $i + 1;

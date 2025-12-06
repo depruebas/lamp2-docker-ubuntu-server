@@ -10,13 +10,14 @@ services:
     volumes:
       - ./user_data:/home/ubuntu
       - ../temp:/data/temp
-      - ${DIR_CODE}/sueltos:/var/www/sueltos
-      - ${DIR_CODE}/webs:/var/www/webs
-      - ${DIR_CODE}/maquetas3:/var/www/maquetas3
-      - ${DIR_CODE}/codigo:/var/www/codigo
-      - ${DIR_CODE}/actualWebs:/var/www/actualWebs
-      - ${DIR_CODE}/articulos:/var/www/articulos
-      - ${DIR_CODE}/pruebas:/var/www/pruebas
+      - ${DIR_CODE}:/var/www/adma
+      # - ${DIR_CODE}/sueltos:/var/www/sueltos
+      # - ${DIR_CODE}/webs:/var/www/webs
+      # - ${DIR_CODE}/maquetas3:/var/www/maquetas3
+      # - ${DIR_CODE}/codigo:/var/www/codigo
+      # - ${DIR_CODE}/actualWebs:/var/www/actualWebs
+      # - ${DIR_CODE}/articulos:/var/www/articulos
+      # - ${DIR_CODE}/pruebas:/var/www/pruebas
       - ~/.ssh:/home/devuser/.ssh
       - ${DIR_CODE}/files:/var/www/files
 
@@ -24,7 +25,7 @@ services:
 
     ports:
       - "80:80"
-      - "2000:22"
+      #- "2000:22"
 
     networks:
       lamp-network:

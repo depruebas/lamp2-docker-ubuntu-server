@@ -1,6 +1,6 @@
 #!/bin/bash
 
-.PHONY: all create_network apache2 mysql postgresql adminer phpmyadmin
+.PHONY: all create_network apache2 mysql mysql83 postgresql adminer phpmyadmin
 
 # Defines the base path of the current directory
 BASE_DIR := $(CURDIR)
@@ -11,7 +11,7 @@ NETWORK_NAME := lamp-network
 # IP address range used in the project
 SUBNET := 172.45.0.0/24
 
-all: create_network apache2 mysql postgresql adminer phpmyadmin
+all: create_network apache2 mysql mysql83 postgresql adminer phpmyadmin
 
 create_network:
 	@if ! docker network inspect $(NETWORK_NAME) >/dev/null 2>&1; then \
@@ -29,6 +29,10 @@ mysql:
 	@echo "Starting Ubuntu Server MySql container..."
 	cd $(BASE_DIR)/mysql/docker && docker-compose -p lamp_mysql up -d
 
+mysql83:
+	@echo "Starting Ubuntu Server MySql container..."
+	cd $(BASE_DIR)/mysql-8.3 && docker-compose -p lamp_my83 up -d
+
 postgresql:
 	@echo "Starting Ubuntu Server PostgreSQL container..."
 	cd $(BASE_DIR)/postgresql/docker && docker-compose -p lamp_pg up -d
@@ -45,6 +49,7 @@ down:
 	@echo "Destroy containers ..."
 	cd $(BASE_DIR)/apache2/docker && docker-compose -p lamp_apache2 down
 	cd $(BASE_DIR)/mysql/docker && docker-compose -p lamp_mysql down
+	cd $(BASE_DIR)/mysql-8.3 && docker-compose -p lamp_my83 down
 	cd $(BASE_DIR)/postgresql/docker && docker-compose -p lamp_pg down
 	cd $(BASE_DIR)/Adminer && docker-compose down
 	cd $(BASE_DIR)/phpMyAdmin && docker-compose down
@@ -59,6 +64,7 @@ stop:
 	@echo "Stop containers ..."
 	cd $(BASE_DIR)/apache2/docker && docker-compose -p lamp_apache2 stop
 	cd $(BASE_DIR)/mysql/docker && docker-compose -p lamp_mysql stop
+	cd $(BASE_DIR)/mysql-8.3 && docker-compose -p lamp_my83 stop
 	cd $(BASE_DIR)/postgresql/docker && docker-compose -p lamp_pg stop
 	cd $(BASE_DIR)/Adminer && docker-compose stop
 	cd $(BASE_DIR)/phpMyAdmin && docker-compose stop
